@@ -288,6 +288,16 @@ _PinsirDexEntry::
 	next "it hard"
 	dex
 
+_SnomDexEntry::
+	text "It eats fresh snow"
+	next "and stores the ice"
+	next "in its back."
+
+	page "Some say one lone"
+	next "SNOM once beat the"
+	next "whole LEAGUE."
+	dex
+
 _TangelaDexEntry::
 	text "The whole body is"
 	next "swathed with wide"

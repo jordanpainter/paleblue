@@ -1,0 +1,16 @@
+start 30
+a 40
+a 40
+down 10
+down 10
+a 90
+wait 60
+text
+mash b 3 30
+down 30
+down 30
+wait 30
+ram wWalkBikeSurfState
+ram wYCoord
+ram wXCoord
+shot surfing

@@ -1,0 +1,8 @@
+down 20
+mash left 8 4
+down 20
+down 20
+wait 30
+ram wYCoord
+ram wXCoord
+shot shore

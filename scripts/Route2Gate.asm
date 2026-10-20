@@ -10,7 +10,7 @@ Route2GateOaksAideText:
 	text_asm
 	CheckEvent EVENT_GOT_HM05
 	jr nz, .got_item
-	ld a, 10
+	ld a, 1 ; Snow Blue: was 10; Snom is the only catch you'll ever have
 	ldh [hOaksAideRequirement], a
 	ld a, HM_FLASH
 	ldh [hOaksAideRewardItem], a

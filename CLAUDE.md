@@ -27,6 +27,19 @@ Built on the pret/pokered disassembly (assembly source that builds Red and Blue)
   builder (`build_snom.py`), preview (`out/`)
 - pret wiki has tutorials: https://github.com/pret/pokered/wiki
 
+## Playtesting
+
+- `python3 -m venv .venv && .venv/bin/pip install pyboy pillow` once (`.venv/` is git-ignored).
+- `.venv/bin/python playtest/playtest.py steps/FILE.txt [--state IN] [--save OUT]` runs a
+  step file headless and writes screenshots to `playtest/out/` (ignored). Step syntax is in
+  the script's docstring; `until a TEXT` mashes until TEXT is on screen (reads the tile map).
+- Regression chain, each `--save`-ing a state the next one `--state`s from:
+  `new_game_to_lab` -> `one_ball` -> `rival_fight` -> `to_water` -> `shore` -> `surf`
+  (`hm_menu` also runs off the `rival_fight` state; `wild_ball` -> `powder_snow`
+  runs off the `to_water` state). `poke LABEL HEX...` writes RAM,
+  e.g. to hand yourself HMs or badges.
+- PyBoy runs it as a plain Game Boy, so screenshots are grey, not the SGB/GBC palette.
+
 ## Git
 
 `origin` still points at pret/pokered. When the GitHub repo exists, rename

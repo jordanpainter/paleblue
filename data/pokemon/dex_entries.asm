@@ -30,7 +30,7 @@ PokedexEntryPointers:
 	dw BlastoiseDexEntry
 	dw PinsirDexEntry
 	dw TangelaDexEntry
-	dw MissingNoDexEntry
+	dw SnomDexEntry
 	dw MissingNoDexEntry
 	dw GrowlitheDexEntry
 	dw OnixDexEntry
@@ -398,6 +398,13 @@ PinsirDexEntry:
 	db 4,11
 	dw 1210
 	text_far _PinsirDexEntry
+	text_end
+
+SnomDexEntry:
+	db "WORM@"
+	db 1,0
+	dw 84
+	text_far _SnomDexEntry
 	text_end
 
 TangelaDexEntry:

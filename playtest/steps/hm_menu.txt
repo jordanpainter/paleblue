@@ -1,0 +1,9 @@
+poke wNumBagItems 05 c4 01 c5 01 c6 01 c7 01 c8 01 ff
+poke wObtainedBadges ff
+start 30
+text
+a 40
+a 40
+wait 20
+text
+shot hm_menu

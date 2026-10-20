@@ -386,6 +386,7 @@ DisplayFieldMoveMonMenu:
 	ld [hli], a ; wFieldMoves + 1
 	ld [hli], a ; wFieldMoves + 2
 	ld [hli], a ; wFieldMoves + 3
+	ld [hli], a ; wFieldMoves + 4
 	ld [hli], a ; wNumFieldMoves
 	ld [hl], 12 ; wFieldMovesLeftmostXCoord
 	call GetMonFieldMoves
@@ -556,6 +557,61 @@ GetMonFieldMoves:
 	jr .loop
 .done
 	pop hl
-	ret
+; Snow Blue: an HM in the bag counts as a field move, though Snom can't learn HMs.
+; The party menu's own handlers still check for the right badge.
+	ld de, HMFieldMoves
+.hmLoop
+	ld a, [wNumFieldMoves]
+	cp MAX_FIELD_MOVES
+	ret nc
+	ld a, [de] ; HM item
+	and a
+	ret z
+	inc de
+	push hl
+	push de
+	ld b, a
+	call IsItemInBag
+	pop de
+	pop hl
+	ld a, [de] ; field move
+	inc de
+	jr z, .hmLoop ; HM not in the bag
+	push de
+	ld b, a
+	ld de, FieldMoveDisplayData
+.hmDisplayDataLoop
+	ld a, [de]
+	inc de
+	cp b
+	jr z, .foundHMDisplayData
+	inc de
+	inc de
+	jr .hmDisplayDataLoop
+.foundHMDisplayData
+	ld a, [de] ; field move name index
+	inc de
+	ld [hli], a ; store name index in wFieldMoves
+	ld a, [de] ; field move leftmost X coordinate
+	ld b, a
+	ld a, [wNumFieldMoves]
+	inc a
+	ld [wNumFieldMoves], a
+	ld a, [wFieldMovesLeftmostXCoord]
+	cp b
+	jr c, .skipUpdatingHMLeftmostXCoord
+	ld a, b
+	ld [wFieldMovesLeftmostXCoord], a
+.skipUpdatingHMLeftmostXCoord
+	pop de
+	jr .hmLoop
+
+HMFieldMoves:
+	db HM_CUT,      CUT
+	db HM_FLY,      FLY
+	db HM_SURF,     SURF
+	db HM_STRENGTH, STRENGTH
+	db HM_FLASH,    FLASH
+	db 0 ; end
 
 INCLUDE "data/moves/field_moves.asm"

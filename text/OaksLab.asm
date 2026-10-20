@@ -20,27 +20,27 @@ _OaksLabRivalMyPokemonLooksStrongerText::
 	done
 
 _OaksLabThoseArePokeBallsText::
-	text "Those are #"
-	line "BALLs. They"
-	cont "contain #MON!"
+	text "That's a #"
+	line "BALL. It holds"
+	cont "a #MON!"
 	done
 
 _OaksLabYouWantCharmanderText::
 	text "So! You want the"
-	line "fire #MON,"
-	cont "CHARMANDER?"
+	line "ice #MON,"
+	cont "SNOM?"
 	done
 
 _OaksLabYouWantSquirtleText::
 	text "So! You want the"
-	line "water #MON,"
-	cont "SQUIRTLE?"
+	line "ICE-BUG #MON,"
+	cont "SNOM?"
 	done
 
 _OaksLabYouWantBulbasaurText::
 	text "So! You want the"
-	line "plant #MON,"
-	cont "BULBASAUR?"
+	line "only #MON I"
+	cont "have, SNOM?"
 	done
 
 _OaksLabMonEnergeticText::
@@ -202,22 +202,22 @@ _OaksLabOakChooseMonText::
 
 	para "Here, <PLAYER>!"
 
-	para "There are 3"
-	line "#MON here!"
+	para "There's a #MON"
+	line "here!"
 
 	para "Haha!"
 
-	para "They are inside"
-	line "the # BALLs."
+	para "It's inside the"
+	line "# BALL."
 
 	para "When I was young,"
 	line "I was a serious"
 	cont "#MON trainer!"
 
 	para "In my old age, I"
-	line "have only 3 left,"
-	cont "but you can have"
-	cont "one! Choose!"
+	line "only have SNOM"
+	cont "left. Lots of"
+	cont "SNOM. Take one!"
 	done
 
 _OaksLabRivalWhatAboutMeText::
@@ -238,8 +238,8 @@ _OaksLabOakDontGoAwayYetText::
 	done
 
 _OaksLabRivalIllTakeThisOneText::
-	text "<RIVAL>: I'll take"
-	line "this one, then!"
+	text "<RIVAL>: Gramps!"
+	line "Gimme one too!"
 	done
 
 _OaksLabRivalReceivedMonText::

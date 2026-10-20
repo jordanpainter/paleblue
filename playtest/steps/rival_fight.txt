@@ -1,0 +1,11 @@
+# from the lab after getting Snom: trigger and fight the first rival battle, then leave
+down 30
+mash left 3 10
+down 30
+until a FIGHT
+mash a 230 40
+mash b 10 40
+ram wIsInBattle
+ram wYCoord
+ram wXCoord
+shot after_fight

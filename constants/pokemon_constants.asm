@@ -37,7 +37,7 @@
 	const BLASTOISE          ; $1C
 	const PINSIR             ; $1D
 	const TANGELA            ; $1E
-	const_skip               ; $1F
+	const SNOM               ; $1F
 	const_skip               ; $20
 	const GROWLITHE          ; $21
 	const ONIX               ; $22
@@ -201,9 +201,11 @@
 DEF NUM_POKEMON_INDEXES EQU const_value - 1
 
 ; starters
-DEF STARTER1 EQU CHARMANDER
-DEF STARTER2 EQU SQUIRTLE
-DEF STARTER3 EQU BULBASAUR
+; Snow Blue: Snom only. Oak's lab shows just the middle ball, and the rival
+; gets his Snom without walking to a ball.
+DEF STARTER1 EQU SNOM
+DEF STARTER2 EQU SNOM
+DEF STARTER3 EQU SNOM
 
 ; ghost Marowak in Pokémon Tower
 DEF RESTLESS_SOUL EQU MAROWAK

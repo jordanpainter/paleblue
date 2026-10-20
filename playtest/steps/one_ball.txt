@@ -1,0 +1,27 @@
+down 20
+right 20
+right 20
+up 20
+a 60
+until b want
+wait 60
+text
+a 60
+until a nickname
+wait 30
+mash b 6 20
+until a Gramps
+wait 40
+text
+shot rival_asks
+until a received
+wait 40
+text
+shot rival_received
+mash a 4 40
+mash b 4 30
+ram wPartySpecies 2
+ram wRivalStarter
+ram wYCoord
+ram wXCoord
+shot after_rival

@@ -1,0 +1,70 @@
+# boot to the title screen and start a new game
+wait 900
+shot 01_title
+start 60
+shot 02_menu
+a 60
+mash a 12 30
+shot 03_oak
+until a NEW NAME
+text
+shot 04_name
+down 20
+a 60
+until a NEW NAME
+down 20
+a 60
+mash a 25 40
+wait 120
+text
+ram wCurMap
+ram wYCoord
+ram wXCoord
+ram wPlayerName 6
+shot 05_bedroom
+mash b 10 40
+right 4
+right 4
+right 4
+right 4
+up 4
+up 4
+up 4
+up 4
+up 4
+wait 90
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot 06_1f
+right 4
+right 4
+right 4
+wait 90
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot 07_downstairs
+mash down 6 4
+mash left 5 4
+mash down 3 4
+wait 120
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot 08_pallet
+mash right 5 4
+mash up 6 4
+mash a 60 40
+wait 60
+text
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot 09_lab
+mash a 25 40
+mash b 4 40
+wait 60
+shot lab_one_ball
+ram wYCoord
+ram wXCoord

@@ -30,7 +30,7 @@ MonsterNames::
 	dname "BLASTOISE"
 	dname "PINSIR"
 	dname "TANGELA"
-	dname "MISSINGNO."
+	dname "SNOM"
 	dname "MISSINGNO."
 	dname "GROWLITHE"
 	dname "ONIX"

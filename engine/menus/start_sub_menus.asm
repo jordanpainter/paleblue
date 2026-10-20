@@ -35,7 +35,7 @@ StartMenu_Pokemon::
 	call DisplayTextBoxID ; display pokemon menu options
 	ld hl, wFieldMoves
 	lb bc, 2, 12 ; max menu item ID, top menu item Y
-	ld e, 5
+	ld e, MAX_FIELD_MOVES + 1
 .adjustMenuVariablesLoop
 	dec e
 	jr z, .storeMenuVariables

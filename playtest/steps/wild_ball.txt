@@ -1,0 +1,22 @@
+# from Pallet Town below the lab: north to Route 1's grass, find a wild battle, throw a ball
+poke wNumBagItems 01 04 05 ff
+mash left 4 4
+mash up 13 4
+mash right 2 4
+mash up 4 4
+ram wCurMap
+untilram wIsInBattle 01 up down
+until a FIGHT
+wait 30
+text
+shot wild_battle
+down 10
+a 40
+a 40
+wait 20
+text
+a 60
+until a caught
+wait 30
+text
+shot ball_dodged

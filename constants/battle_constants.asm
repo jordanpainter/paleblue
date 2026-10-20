@@ -2,6 +2,7 @@ DEF MAX_LEVEL EQU 100
 
 ; maximum moves known per mon
 DEF NUM_MOVES EQU 4
+DEF MAX_FIELD_MOVES EQU 5 ; Snow Blue: all five HMs can show in the party menu
 
 ; significant stat values
 DEF BASE_STAT_LEVEL EQU 7

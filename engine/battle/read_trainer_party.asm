@@ -129,17 +129,8 @@ ReadTrainer:
 	ld a, SKY_ATTACK
 	ld [wEnemyMon1Moves + 2], a
 
-; starter
-	ld a, [wRivalStarter]
-	cp STARTER3
-	ld b, MEGA_DRAIN
-	jr z, .GiveStarterMove
-	cp STARTER1
-	ld b, FIRE_BLAST
-	jr z, .GiveStarterMove
-	ld b, BLIZZARD ; must be squirtle
-.GiveStarterMove
-	ld a, b
+; starter (always Snom in Snow Blue)
+	ld a, BLIZZARD
 	ld [wEnemyMon6Moves + 2], a
 .FinishUp
 ; clear wAmountMoneyWon addresses

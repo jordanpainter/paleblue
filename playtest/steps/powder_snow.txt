@@ -1,0 +1,15 @@
+until b FIGHT
+ram wNumBagItems 3
+ram wPartyCount
+ram wEnemyMonHP 2
+up 10
+a 40
+wait 20
+text
+shot move_list
+a 30
+wait 50
+shot powder_snow_anim
+wait 200
+text
+ram wEnemyMonHP 2

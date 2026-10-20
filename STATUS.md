@@ -5,15 +5,28 @@
   builds byte-identical Blue.
 - Snom sprites done: front in `art/snom_front.png` (editable PNG), back painted in
   `art/snomb.txt` (option D). Rerun `python3 art/build_snom.py` after edits.
+- Snom is species $1F / Pokédex #152 and your starter; the rival gets one too and
+  fields it in every fight (Lv 65 with Blizzard as Champion).
+- One ball in Oak's lab; the rival asks Oak for his own Snom.
+  Verified in PyBoy: Pokédex page, the lab scene, first rival battle.
+- PyBoy playtester in `playtest/`.
+- HMs in the bag appear as Snom's field moves (all five, vanilla badge checks).
+  Tested: menu with 0/1/5 HMs, every entry's handler, badge refusal, real Surf.
+- Route 2 aide gives Flash for 1 Pokémon owned.
+- Powder Snow (new move, Snom's Lv 1 move); tested on a wild Pidgey.
+- No catching: every wild ball is dodged; tested on Route 1 (ball used, party still 1).
 
 ## Next
-1. Add Snom as a new species (sprites ready), stats, learnset, TM compat; add Powder Snow.
-2. Oak's lab: Snom as the only starter; rival also gets Snom.
-3. Block catching (wild battles reuse "The trainer blocked the BALL!"),
-   gift Pokémon, in-game trades.
-4. HMs usable from the bag (badge + HM in bag, no party move needed).
-5. Title screen / name: "Snow Blue".
-6. Later: PyBoy agent harness reading RAM via `pokeblue.sym`.
+1. Block gift Pokémon (Magikarp salesman, Eevee, Lapras, Hitmonlee/chan,
+   fossils) and in-game trades.
+2. Settle the learnset.
+3. Title screen / name: "Snow Blue".
+4. Later: agent harness on top of `playtest/` (RAM via `pokeblue.sym`).
 
 ## Open
-- Exact learnset (levels). Flash: Route 2 aide gives it free (to implement).
+- Exact learnset (levels); see DECISIONS.md.
+- Snom's cry is untested by ear.
+- Old man's catching tutorial is untested since the ball change (the code path
+  for it is unchanged).
+- Flash aide and a real Cut on a tree are untested in-game (the code paths are
+  vanilla; Surf was tested for real).

@@ -152,6 +152,12 @@ ItemUseBall:
 	ld b, $10 ; can't be caught value
 	jp z, .setAnimData
 
+; Snow Blue: nothing can be caught, so every ball gets dodged like a ghost's.
+; The old man's tutorial catch is the one exception.
+	ld a, [wBattleType]
+	dec a ; BATTLE_TYPE_OLD_MAN?
+	jp nz, .setAnimData
+
 	ld a, [wBattleType]
 	dec a
 	jr nz, .notOldManBattle
