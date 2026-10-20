@@ -4,6 +4,12 @@ _GivePokemon::
 	call EnableAutoTextBoxDrawing
 	xor a
 	ld [wAddedToParty], a
+; Snow Blue: Snom is the only Pokémon you get. Every gift fails the way a full
+; box does, so givers keep their Pokémon, money, coins or fossil.
+	ld hl, SnomRefusesGiftText
+	call PrintText
+	and a
+	ret
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
 	jr c, .addToParty
@@ -75,6 +81,10 @@ GotMonText:
 
 SentToBoxText:
 	text_far _SentToBoxText
+	text_end
+
+SnomRefusesGiftText:
+	text_far _SnomRefusesGiftText
 	text_end
 
 BoxIsFullText:

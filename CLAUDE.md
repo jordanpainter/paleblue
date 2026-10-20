@@ -36,7 +36,8 @@ Built on the pret/pokered disassembly (assembly source that builds Red and Blue)
 - Regression chain, each `--save`-ing a state the next one `--state`s from:
   `new_game_to_lab` -> `one_ball` -> `rival_fight` -> `to_water` -> `shore` -> `surf`
   (`hm_menu` also runs off the `rival_fight` state; `wild_ball` -> `powder_snow`
-  runs off the `to_water` state). `poke LABEL HEX...` writes RAM,
+  runs off the `to_water` state; so does `fly_celadon` -> `to_prize_room` ->
+  `prize_gift`). `poke LABEL HEX...` writes RAM,
   e.g. to hand yourself HMs or badges.
 - PyBoy runs it as a plain Game Boy, so screenshots are grey, not the SGB/GBC palette.
 

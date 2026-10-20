@@ -1,0 +1,20 @@
+# in the prize room: try to buy ABRA with coins; the gift should be refused and coins kept
+ram wPlayerCoins 2
+mash up 4 4
+mash left 2 4
+up 20
+a 60
+until a ABRA
+wait 30
+text
+a 60
+wait 60
+text
+a 60
+wait 120
+text
+shot gift_refused
+mash a 3 60
+ram wPlayerCoins 2
+ram wPartyCount
+ram wPartySpecies 2

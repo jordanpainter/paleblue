@@ -1,0 +1,13 @@
+# Celadon (after fly_celadon): around the plaza fence to the Game Corner prize room
+mash down 4 4
+mash left 5 4
+mash down 6 4
+ram wYCoord
+ram wXCoord
+mash left 3 4
+up 20
+wait 90
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot prize_room

@@ -1,0 +1,19 @@
+# from Pallet with Snom: Fly to Celadon (HM02 + badges + towns given via RAM)
+poke wNumBagItems 06 c4 01 c5 01 c6 01 c7 01 c8 01 45 01 ff
+poke wObtainedBadges ff
+poke wTownVisitedFlag ff ff
+poke wPlayerCoins 50 00
+start 30
+a 40
+a 40
+down 10
+a 60
+text
+until down CELADON
+text
+a 200
+wait 200
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot celadon

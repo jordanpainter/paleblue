@@ -15,13 +15,13 @@
 - Route 2 aide gives Flash for 1 Pokémon owned.
 - Powder Snow (new move, Snom's Lv 1 move); tested on a wild Pidgey.
 - No catching: every wild ball is dodged; tested on Route 1 (ball used, party still 1).
+- No gifts: every gift Pokémon is refused; tested at the Celadon prize counter
+  (coins kept). Trades were already impossible (no NPC wants a Snom).
 
 ## Next
-1. Block gift Pokémon (Magikarp salesman, Eevee, Lapras, Hitmonlee/chan,
-   fossils) and in-game trades.
-2. Settle the learnset.
-3. Title screen / name: "Snow Blue".
-4. Later: agent harness on top of `playtest/` (RAM via `pokeblue.sym`).
+1. Settle the learnset.
+2. Title screen / name: "Snow Blue".
+3. Later: agent harness on top of `playtest/` (RAM via `pokeblue.sym`).
 
 ## Open
 - Exact learnset (levels); see DECISIONS.md.
@@ -29,4 +29,4 @@
 - Old man's catching tutorial is untested since the ball change (the code path
   for it is unchanged).
 - Flash aide and a real Cut on a tree are untested in-game (the code paths are
-  vanilla; Surf was tested for real).
+  vanilla; Surf and Fly were tested for real).

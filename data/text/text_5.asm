@@ -91,6 +91,12 @@ _SentToBoxText::
 	text " on PC!"
 	done
 
+_SnomRefusesGiftText::
+	text "But SNOM won't"
+	line "share <PLAYER>"
+	cont "with anyone!"
+	done
+
 _BoxIsFullText::
 	text "There's no more"
 	line "room for #MON!"

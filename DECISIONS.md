@@ -101,3 +101,13 @@ animation, "It dodged the thrown BALL! This POKéMON can't be caught!", ball use
 Vanilla text that reads right in a wild battle; the trainer message didn't. The old
 man's tutorial catch (BATTLE_TYPE_OLD_MAN) is the one exception. The vanilla catch
 calculation below the check is now unreachable and left in place.
+
+## 2026-10-20: Gift Pokémon are refused in _GivePokemon; trades need no change
+`_GivePokemon` prints "But SNOM won't share <PLAYER> with anyone!" and returns the
+box-full failure, which every caller already handles: Magikarp salesman keeps his
+money, Dojo/Eevee/Lapras balls stay, the prize counter keeps your coins, the fossil
+lab keeps the revived fossil. Covers all seven GivePokemon sites in one place (the
+rest of the routine is now unreachable, left in place).
+In-game trades are already impossible: each NPC checks you offer the species they
+asked for, none asks for Snom, and you can't catch what they want. Link-cable
+trades with another cartridge are not blocked (out of scope for a solo run).
