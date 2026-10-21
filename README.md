@@ -11,7 +11,7 @@ A Pokémon Blue hack: Pretty much the same except your starter pokemon is Snom. 
 
 It's been beaten start to finish.
 
-## Agent progress
+## Agent progress <img src="artwork/snom.gif" alt="Snom hopping between poses" height="83" align="absbottom">
 
 A local agent is learning to play Pale Blue with no one at the controls. New entries go
 here as it gets further.
@@ -36,3 +36,4 @@ Built on [pret/pokered](https://github.com/pret/pokered). Snom sprites from
 [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion). Thanks to
 JadeLune for the [HQ Blue box art](https://www.deviantart.com/jadelune/art/Pokemon-Blue-Version-Game-Boy-HQ-Box-Art-593872935)
 that `artwork/box_art.png` is built on.
+chal
