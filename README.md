@@ -11,6 +11,15 @@ A Pokémon Blue hack: Pretty much the same except your starter pokemon is Snom. 
 
 It's been beaten start to finish.
 
+## Agent progress
+
+A local agent is learning to play Pale Blue with no one at the controls. New entries go
+here as it gets further.
+
+| Date | Milestone | Notes |
+| --- | --- | --- |
+| | Not started yet | |
+
 ## Playing it
 
 Install [RGBDS](https://rgbds.gbdev.io) 1.0.4, then run `make blue` to build `pokeblue.gbc`.
@@ -18,11 +27,8 @@ Open it in any Game Boy emulator. It works on Game Boy and Super Game Boy.
 
 ## The agent
 
-The plan is to train a local agent to beat Pale Blue on its own, with no one at the
-controls. It'll build on what's already here: `playtest/` plays the game headlessly and
-finds walking routes from the map data, and `stats/` has an mGBA script that logs every
-battle and turn of a human run to compare against. This repo will be updated as it makes
-progress.
+The goal is an agent that runs on a home machine and beats the whole game on its own, one
+Snom and all. How it's built, and why, will go here as it takes shape.
 
 ## Credits
 
