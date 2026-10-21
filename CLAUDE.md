@@ -60,5 +60,5 @@ On this project, commits Claude makes or drafts end with a
 `Co-Authored-By: Claude <model> <noreply@anthropic.com>` trailer (Jordan's call,
 2026-10-20; overrides the global no-trailer rule here only).
 
-`origin` still points at pret/pokered. When the GitHub repo exists, rename
-`origin` to `upstream` and add the new repo as `origin`.
+`origin` is https://github.com/jordanpainter/paleblue (private); `upstream` is
+pret/pokered. Play logs (`stats/*.csv`) and `saves_backup/` stay local (git-ignored).

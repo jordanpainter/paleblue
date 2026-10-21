@@ -45,14 +45,17 @@
   credits with a ???? cameo and PALE BLUE STAFF heading (built in playtest/out/dev,
   goes into the real ROM at the next mGBA quit).
 
+- Jordan beat ???? and got Psychic (2026-10-21). Sprite-over-menu fix for its reward is
+  in source and the dev copy; goes into the ROM at the next mGBA quit.
+
 ## Next
-1. GitHub repo (`pale-blue`): public/private, whether play logs go up, art credits.
-2. Agent: layered design chosen (DECISIONS.md); first piece to build is open.
-3. Maybe: SGB border art (still says BLUE, vanilla starters).
-4. Tune ????'s stats by simulating fights against Jordan's end-game Snom.
-5. Followers (Snom walking behind you): possible via Yellow's Pikachu engine, big job; parked.
+1. Agent: layered design chosen (DECISIONS.md); first piece to build is open.
+2. Maybe: SGB border art (still says BLUE, vanilla starters).
+3. Followers (Snom walking behind you): possible via Yellow's Pikachu engine, big job; parked.
 
 ## Open
+- The stats log has no Elite Four battles (logger likely not loaded those sessions), so
+  end-game difficulty data is Jordan's account only (many losses late on, won with grinding).
 - route.py disagrees with the game about counters in the Indigo Plateau lobby (MART
   tileset): check before the agent relies on it indoors. Outdoors it matched exactly.
 - Jordan saw garbled text when the rival got his Snom (first play, mGBA, 2026-10-20).

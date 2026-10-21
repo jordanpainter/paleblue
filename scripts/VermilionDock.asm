@@ -304,7 +304,13 @@ VermilionDockStarSnomLightText:
 	ld [wNamedObjectIndex], a
 	call GetMoveName
 	call CopyToStringBuffer
+	; hide the overworld sprites, or the player draws over the "forget a move" list
+	xor a
+	ld [wUpdateSpritesEnabled], a
+	call ClearSprites
 	predef LearnMove
+	ld a, 1
+	ld [wUpdateSpritesEnabled], a
 	ld a, b
 	and a
 	jr z, .notLearned ; turned it down: the truck offers it again

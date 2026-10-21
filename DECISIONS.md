@@ -264,3 +264,25 @@ is PALE BLUE STAFF, every credits Pokémon is Snom, and ???? makes a cameo third
 (LoadFrontSpriteByMonIndex lets STARSNOM through the dex-0 "Rhydon trap"). Credits tested
 only by their pieces: jumping into the credits routine headless mangles the screen, so a
 full run needs a real Elite Four win.
+
+## 2026-10-21: Published privately as jordanpainter/pale-blue
+
+Jordan's call: private for now, play logs and save backups kept local. Source only, as
+ROM hacks are normally shared; the README credits pret/pokered and pokeemerald-expansion
+(Snom sprites). The README makes no claims about the first run's levels or loss counts,
+because the log has no Elite Four rows to back them.
+
+## 2026-10-21: ???? keeps base 100 stats (closes the tuning item)
+
+A Monte Carlo of Gen 1 mechanics (playtest/out/sim_starsnom.py, scratch) put Jordan's
+Lv 100 Snom (244 HP, 135/149/125/189 from the save's DVs and maxed stat exp) against
+???? at several stat lines, playing Light Screen, Amnesia to +2/+4, Leech Life, heal
+under half. Base 100: about 38% with no items and 70% with 5 heals; Special 120 would
+make it a coin flip (48%). Most losses are ???? crits, which ignore Light Screen. Kept
+at 100: a fair superboss you fight once and can retry. Jordan beat it on 2026-10-21.
+Fixed the same day: the reward's "forget a move" list drew under the player sprite
+(the map script now hides sprites around LearnMove).
+
+## 2026-10-21: Repo renamed to jordanpainter/paleblue
+
+Jordan's call (was pale-blue).
