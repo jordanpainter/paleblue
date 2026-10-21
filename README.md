@@ -1,5 +1,7 @@
 # Pokémon Pale Blue
 
+<img src="artwork/title_screen.png" alt="Pale Blue title screen: Snom, happy" width="480">
+
 A Pokémon Blue hack: your starter is a Snom, and it's the only Pokémon you'll ever have.
 
 - No catching, trading or gift Pokémon. Snom never evolves.
@@ -16,6 +18,12 @@ controls. It'll build on what's already here: `playtest/` plays the game headles
 finds walking routes from the map data, and `stats/` has an mGBA script that logs every
 battle and turn of a human run to compare against. This repo will be updated as it makes
 progress.
+
+## Artwork
+
+`artwork/` has box art for your ROM collection, in three shades of blue. It's built from
+[jadelune's HQ recreation of the Blue box](https://www.deviantart.com/jadelune) with Snom's
+official artwork; `art/cover/boxedit/` has the scripts.
 
 ## Credits
 

@@ -38,3 +38,8 @@ art/out/
 stats/*.csv
 stats/backup/
 saves_backup/
+
+# project notes, kept local
+CLAUDE.md
+STATUS.md
+DECISIONS.md
