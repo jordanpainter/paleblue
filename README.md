@@ -1,6 +1,6 @@
-# Pokémon Pale Blue
+<h1 align="center">Pokémon Pale Blue</h1>
 
-<img src="artwork/title_screen_grey.png" alt="Pale Blue title screen: Snom, happy" width="480">
+<p align="center"><img src="artwork/title_screen_grey.png" alt="Pale Blue title screen: Snom, happy" width="480"></p>
 
 A Pokémon Blue hack: Pretty much the same except your starter pokemon is Snom. And you can't catch anything. Or trade. Or evolve.
 
@@ -8,6 +8,7 @@ A Pokémon Blue hack: Pretty much the same except your starter pokemon is Snom. 
 - HMs work from the bag.
 - Marts sell Ethers and Elixirs
 - Every Pokémon Center has a free move relearner - you'll need it
+- The truck is still there. Probably nothing.
 
 It's been beaten start to finish.
 
@@ -22,8 +23,12 @@ here as it gets further.
 
 ## Playing it
 
-Install [RGBDS](https://rgbds.gbdev.io) 1.0.4, then run `make blue` to build `pokeblue.gbc`.
-Open it in any Game Boy emulator. It works on Game Boy and Super Game Boy.
+Download `pale_blue.bps` from [Releases](https://github.com/jordanpainter/paleblue/releases)
+and apply it to your own Pokémon Blue ROM (the English USA/Europe release) with
+[Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/), in your browser. It works on
+Game Boy and Super Game Boy.
+
+Or build it yourself: install [RGBDS](https://rgbds.gbdev.io) 1.0.4 and run `make blue`.
 
 ## The agent
 

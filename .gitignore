@@ -43,3 +43,6 @@ saves_backup/
 CLAUDE.md
 STATUS.md
 DECISIONS.md
+
+# player patch: published on GitHub releases, not committed
+*.bps
