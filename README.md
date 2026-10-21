@@ -36,4 +36,3 @@ Built on [pret/pokered](https://github.com/pret/pokered). Snom sprites from
 [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion). Thanks to
 JadeLune for the [HQ Blue box art](https://www.deviantart.com/jadelune/art/Pokemon-Blue-Version-Game-Boy-HQ-Box-Art-593872935)
 that `artwork/box_art.png` is built on.
-chal
