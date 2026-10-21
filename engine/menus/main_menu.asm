@@ -105,6 +105,7 @@ MainMenu:
 	jp nz, .mainMenuLoop
 	jr .inputLoop
 .pressedA
+	farcall CopyTilesetHeader ; Snow Blue: the save's tileset pointers may predate this ROM
 	call GBPalWhiteOutWithDelay3
 	call ClearScreen
 	ld a, PLAYER_DIR_DOWN

@@ -19,20 +19,8 @@ IF DEF(_RED)
 	db MAGIKARP
 ENDC
 IF DEF(_BLUE)
-	db STARTER2
-	db STARTER1
-	db STARTER3
-	db MANKEY
-	db HITMONLEE
-	db VULPIX
-	db CHANSEY
-	db AERODACTYL
-	db JOLTEON
-	db SNORLAX
-	db GLOOM
-	db POLIWAG
-	db DODUO
-	db PORYGON
-	db GENGAR
-	db RAICHU
+; Snow Blue: there is only Snom
+	REPT 16
+	db SNOM
+	ENDR
 ENDC

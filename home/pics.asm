@@ -18,6 +18,10 @@ UncompressMonSprite::
 ; $99 ≤ index:             bank $D ("Pics 5")
 	ld a, [wCurPartySpecies]
 	ld b, a
+	cp STARSNOM ; Snow Blue
+	ld a, BANK(StarSnomPicFront)
+	jr z, .GotBank
+	ld a, b
 	cp MEW
 	ld a, BANK(MewPicFront)
 	jr z, .GotBank

@@ -1,31 +1,7 @@
 LoadTilesetHeader:
 	call GetPredefRegisters
 	push hl
-	ld d, 0
-	ld a, [wCurMapTileset]
-	add a
-	add a
-	ld b, a
-	add a
-	add b ; a = tileset * 12
-	jr nc, .noCarry
-	inc d
-.noCarry
-	ld e, a
-	ld hl, Tilesets
-	add hl, de
-	ld de, wTilesetBank
-	ld c, $b
-.copyTilesetHeaderLoop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec c
-	jr nz, .copyTilesetHeaderLoop
-	ld a, [hl]
-	ldh [hTileAnimations], a
-	xor a
-	ldh [hMovingBGTilesCounter1], a
+	call CopyTilesetHeader
 	pop hl
 	ld a, [wCurMapTileset]
 	push hl
@@ -53,6 +29,37 @@ LoadTilesetHeader:
 	and $1
 	ld [wXBlockCoord], a
 .done
+	ret
+
+; Snow Blue: split out of LoadTilesetHeader so Continue can refresh the tileset's ROM
+; pointers (blocks, gfx, collision) without the warp-position side effects. Saves store
+; these pointers, and a rebuilt ROM moves what they point at.
+CopyTilesetHeader::
+	ld d, 0
+	ld a, [wCurMapTileset]
+	add a
+	add a
+	ld b, a
+	add a
+	add b ; a = tileset * 12
+	jr nc, .noCarry
+	inc d
+.noCarry
+	ld e, a
+	ld hl, Tilesets
+	add hl, de
+	ld de, wTilesetBank
+	ld c, $b
+.copyTilesetHeaderLoop
+	ld a, [hli]
+	ld [de], a
+	inc de
+	dec c
+	jr nz, .copyTilesetHeaderLoop
+	ld a, [hl]
+	ldh [hTileAnimations], a
+	xor a
+	ldh [hMovingBGTilesCounter1], a
 	ret
 
 INCLUDE "data/tilesets/dungeon_tilesets.asm"

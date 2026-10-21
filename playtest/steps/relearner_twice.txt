@@ -1,0 +1,18 @@
+# Celadon (after fly_celadon): Lv 48 Snom with four moves relearns twice in a row,
+# forgetting a move each time (the path that crashed for Jordan)
+poke wPartyMon1Level 30
+# AMNESIA, ICE BEAM, LEECH LIFE, LIGHT SCREEN
+poke wPartyMon1Moves 85 3a 8d 71
+up 20
+wait 90
+mash up 3 4
+mash right 8 4
+mash up 3 4
+until a remember
+a 60
+a 60
+a 60
+a 60
+wait 120
+text
+shot twice_list1

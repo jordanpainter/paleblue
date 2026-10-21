@@ -1,0 +1,22 @@
+# after relearner (dialogue open): YES, then pick AMNESIA, the 9th entry (2 Lv 1 moves, then the
+# learnset up to Lv 48; Blizzard at 50 must not be listed), and walk away
+a 60
+a 60
+a 60
+a 60
+wait 120
+text
+shot relearner_list
+mash down 8 10
+a 60
+wait 60
+text
+ram wPartyMon1Moves 4
+a 60
+wait 60
+a 60
+wait 60
+a 60
+wait 60
+down 20
+ram wYCoord

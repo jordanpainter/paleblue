@@ -1,31 +1,52 @@
-# Pokémon Red and Blue [![Build Status][ci-badge]][ci]
+# Pokémon Pale Blue
 
-This is a disassembly of Pokémon Red and Blue.
+A Pokémon Blue ROM hack with one rule: your starter is a Snom, and it's the only
+Pokémon you will ever have. Beat the whole game with it.
 
-It builds the following ROMs:
+It can be done. The first full run beat the Champion after a lot of grinding and a lot
+of losses along the way.
 
-- Pokemon Red (UE) [S][!].gb `sha1: ea9bcae617fdf159b045185467ae58b2e4a48b9a`
-- Pokemon Blue (UE) [S][!].gb `sha1: d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`
-- BLUEMONS.GB (debug build) `sha1: 5b1456177671b79b263c614ea0e7cc9ac542e9c4`
-- dmgapae0.e69.patch `sha1: 0fb5f743696adfe1dbb2e062111f08f9bc5a293a`
-- dmgapee0.e68.patch `sha1: ed4be94dc29c64271942c87f2157bca9ca1019c7`
+## What's different
 
-To set up the repository, see [**INSTALL.md**](INSTALL.md).
+- You get one Snom, it never evolves, and that's it. Wild Pokémon dodge every ball,
+  gift Pokémon get turned down, and nobody will trade with you. Your rival asks Oak for
+  a Snom of his own.
+- HMs work from the bag. Snom doesn't need to learn Cut, Surf and the rest; carry the HM
+  and use it from Snom's menu.
+- With one Pokémon you run out of PP long before you run out of HP, so marts sell Ethers
+  and Elixirs where the Poké Balls used to be.
+- The old Cable Club desk in every Pokémon Center is now a free move relearner, so a
+  skipped level-up move is never gone for good.
+- Snom's learnset is built for the run: Powder Snow (a new move), Leech Life, Aurora
+  Beam, Ice Beam, Amnesia, Blizzard and more.
+- The title screen cycles through seven Snom poses, Snom carries you when you surf, and
+  every name in the credits is SNOM.
+- There might be something under the truck.
 
+## Building
 
-## See also
+You need [RGBDS 1.0.4](https://rgbds.gbdev.io/). Then:
 
-- [**Wiki**][wiki] (includes [tutorials][tutorials])
-- [**Symbols**][symbols]
-- [**Tools**][tools]
+```sh
+make blue
+```
 
-You can find us on [Discord (pret, #pokered)](https://discord.gg/d5dubZ3).
+That produces `pokeblue.gbc`. No ROM is included here, only source. For toolchain setup,
+see [INSTALL.md](INSTALL.md).
 
-For other pret projects, see [pret.github.io](https://pret.github.io/).
+## Extras
 
-[wiki]: https://github.com/pret/pokered/wiki
-[tutorials]: https://github.com/pret/pokered/wiki/Tutorials
-[symbols]: https://github.com/pret/pokered/tree/symbols
-[tools]: https://github.com/pret/gb-asm-tools
-[ci]: https://github.com/pret/pokered/actions
-[ci-badge]: https://github.com/pret/pokered/actions/workflows/main.yml/badge.svg
+- `stats/stats_log.lua` is an [mGBA](https://mgba.io/) script that logs every battle, turn
+  and save to CSV while you play.
+- `playtest/` drives the game headlessly in [PyBoy](https://github.com/Baekalfen/PyBoy)
+  from step files, and `playtest/route.py` finds walking routes from the map data. They're
+  the start of an agent that will play Pale Blue on its own.
+
+## Credits
+
+- Built on [pret/pokered](https://github.com/pret/pokered), the Pokémon Red and Blue
+  disassembly.
+- Snom's sprites are adapted from
+  [pokeemerald-expansion](https://github.com/rh-hideout/pokeemerald-expansion).
+- Pokémon is © Nintendo, Creatures and Game Freak. This is a non-commercial fan project
+  and isn't affiliated with any of them.

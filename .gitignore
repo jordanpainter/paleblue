@@ -33,3 +33,8 @@
 # Snow Blue
 .venv/
 playtest/out/
+art/out/
+.DS_Store
+stats/*.csv
+stats/backup/
+saves_backup/

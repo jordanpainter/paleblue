@@ -128,10 +128,7 @@ ReadTrainer:
 ; pidgeot
 	ld a, SKY_ATTACK
 	ld [wEnemyMon1Moves + 2], a
-
-; starter (always Snom in Snow Blue)
-	ld a, BLIZZARD
-	ld [wEnemyMon6Moves + 2], a
+; Snow Blue: his Snom already learns Blizzard by level, so no starter override
 .FinishUp
 ; clear wAmountMoneyWon addresses
 	xor a

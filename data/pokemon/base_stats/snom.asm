@@ -15,7 +15,7 @@
 
 	; tm/hm learnset
 	tmhm TOXIC,        ICE_BEAM,     BLIZZARD,     MIMIC,        DOUBLE_TEAM,  \
-	     BIDE,         REST,         SUBSTITUTE
+	     REFLECT,      BIDE,         REST,         SUBSTITUTE
 	; end
 
 	db 0 ; padding

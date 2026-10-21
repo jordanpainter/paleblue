@@ -272,8 +272,8 @@ TitleScreenPickNewMon:
 	ld a, HIGH(vBGMap0)
 	call TitleScreenCopyTileMapToVRAM
 
-.loop
-; Keep looping until a mon different from the current one is picked.
+; Snow Blue: every entry is Snom, so the "can't be the same as before" check
+; would loop forever. Snom scrolls out, and Snom scrolls back in.
 	call Random
 	and $f
 	ld c, a
@@ -282,11 +282,6 @@ TitleScreenPickNewMon:
 	add hl, bc
 	ld a, [hl]
 	ld hl, wTitleMonSpecies
-
-; Can't be the same as before.
-	cp [hl]
-	jr z, .loop
-
 	ld [hl], a
 	call LoadTitleMonSprite
 
@@ -364,9 +359,48 @@ ClearBothBGMaps:
 LoadTitleMonSprite:
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
-	hlcoord 5, 10
 	call GetMonHeader
-	jp LoadFrontSpriteByMonIndex
+; Snow Blue: Snom strikes a random pose, never the same one twice in a row
+.pickPose
+	call Random
+	and %111
+	cp NUM_SNOM_POSES
+	jr nc, .pickPose
+	ld hl, wTitleSnomPose
+	cp [hl]
+	jr z, .pickPose
+	ld [hl], a
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, SnomPosePics
+	add hl, bc
+	ld a, [hli]
+	ld [wSpriteInputPtr], a
+	ld a, [hl]
+	ld [wSpriteInputPtr + 1], a
+	ld a, BANK(SnomPoseNormalPic)
+	call UncompressSpriteData
+	ld a, [wMonHSpriteDim]
+	ld c, a
+	ld de, vFrontPic
+	call LoadUncompressedSpriteData
+	xor a
+	ldh [hStartTileID], a
+	ld [wSpriteFlipped], a
+	hlcoord 5, 10
+	predef_jump CopyUncompressedPicToTilemap
+
+; same order as POSES in art/build_snom.py
+SnomPosePics:
+	dw SnomPoseNormalPic
+	dw SnomPoseLookBackPic
+	dw SnomPoseHopPic
+	dw SnomPoseBlinkPic
+	dw SnomPoseHappyPic
+	dw SnomPoseSleepyPic
+	dw SnomPoseSurprisedPic
+DEF NUM_SNOM_POSES EQU (@ - SnomPosePics) / 2
 
 TitleScreenCopyTileMapToVRAM:
 	ldh [hAutoBGTransferDest + 1], a
@@ -397,7 +431,11 @@ INCLUDE "data/pokemon/title_mons.asm"
 
 ; prints version text (red, blue)
 PrintGameVersionOnTitleScreen:
+IF DEF(_BLUE)
+	hlcoord 5, 8 ; Snow Blue: "Pale Blue Version" is 10 tiles, centred
+ELSE
 	hlcoord 7, 8
+ENDC
 	ld de, VersionOnTitleScreenText
 	jp PlaceString
 
@@ -407,7 +445,7 @@ IF DEF(_RED)
 	db $60,$61,$7F,$65,$66,$67,$68,$69,"@" ; "Red Version"
 ENDC
 IF DEF(_BLUE)
-	db $61,$62,$63,$64,$65,$66,$67,$68,"@" ; "Blue Version"
+	db $60,$61,$62,$63,$64,$65,$66,$67,$68,$69,"@" ; "Pale Blue Version"
 ENDC
 
 DebugNewGamePlayerName:

@@ -31,7 +31,7 @@ PokedexOrder:
 	db DEX_PINSIR
 	db DEX_TANGELA
 	db DEX_SNOM
-	db 0 ; MISSINGNO.
+	db 0 ; ???? (no Pokédex number)
 	db DEX_GROWLITHE
 	db DEX_ONIX
 	db DEX_FEAROW

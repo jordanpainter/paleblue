@@ -804,6 +804,8 @@ wBadgeOrFaceTiles:: ds NUM_BADGES + 1
 wTempObtainedBadgesBooleans:: ds NUM_BADGES
 
 NEXTU
+; Snow Blue: the title screen's last Snom pose (the credits byte is unused anyway)
+wTitleSnomPose::
 wUnusedCreditsByte:: db
 ; the number of credits mons that have been displayed so far
 wNumCreditsMonsDisplayed:: db

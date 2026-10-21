@@ -1,0 +1,15 @@
+# from Pallet: set Snom to Lv 8, use a Rare Candy, expect it to learn Leech Life at 9
+poke wPartyMon1Level 08
+poke wNumBagItems 01 28 01 ff
+start 30
+down 10
+a 40
+until a RARE
+a 40
+a 40
+mash a 4 60
+wait 60
+text
+mash a 4 60
+ram wPartyMon1Level
+ram wPartyMon1Moves 4

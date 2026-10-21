@@ -275,6 +275,8 @@ DeterminePaletteID:
 	ret nz
 	ld a, [hl]
 DeterminePaletteIDOutOfBattle:
+	cp STARSNOM ; Snow Blue: ???? has no Pokédex number to look a palette up by
+	jr z, .starSnom
 	ld [wPokedexNum], a
 	and a ; is the mon index 0?
 	jr z, .skipDexNumConversion
@@ -288,6 +290,9 @@ DeterminePaletteIDOutOfBattle:
 	ld hl, MonsterPalettes ; not just for Pokemon, Trainers use it too
 	add hl, de
 	ld a, [hl]
+	ret
+.starSnom
+	ld a, PAL_PINKMON
 	ret
 
 InitPartyMenuBlkPacket:

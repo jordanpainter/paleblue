@@ -41,7 +41,7 @@ EvosMovesPointerTable:
 	dw PinsirEvosMoves
 	dw TangelaEvosMoves
 	dw SnomEvosMoves
-	dw MissingNo20EvosMoves
+	dw StarSnomEvosMoves
 	dw GrowlitheEvosMoves
 	dw OnixEvosMoves
 	dw FearowEvosMoves
@@ -552,12 +552,17 @@ SnomEvosMoves:
 	db 0
 ; Learnset
 	db 9, LEECH_LIFE
-	db 15, MIST
-	db 20, AURORA_BEAM
+	db 14, MIST
+	db 18, AURORA_BEAM
+	db 23, LIGHT_SCREEN
 	db 28, HAZE
+	db 33, ICE_BEAM
+	db 38, REST
+	db 43, AMNESIA
+	db 50, BLIZZARD
 	db 0
 
-MissingNo20EvosMoves:
+StarSnomEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset

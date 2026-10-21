@@ -98,6 +98,9 @@ LoadFlippedFrontSpriteByMonIndex::
 	ld [wSpriteFlipped], a
 
 LoadFrontSpriteByMonIndex::
+	ld a, [wCurPartySpecies]
+	cp STARSNOM ; Snow Blue: ???? has no Pokédex number but does have a picture
+	jr z, .validDexNumber
 	push hl
 	ld a, [wPokedexNum]
 	push af
@@ -396,12 +399,16 @@ GetMonHeader::
 	ld b, $77 ; size of Aerodactyl fossil sprite
 	cp FOSSIL_AERODACTYL ; Aerodactyl fossil
 	jr z, .specialID
+	ld hl, StarSnomBaseStats
+	cp STARSNOM ; Snow Blue: ???? has no Pokédex number, so it isn't in BaseStats
+	jr z, .copyHeader
 	predef IndexToPokedex
 	ld a, [wPokedexNum]
 	dec a
 	ld bc, BASE_DATA_SIZE
 	ld hl, BaseStats
 	call AddNTimes
+.copyHeader
 	ld de, wMonHeader
 	ld bc, BASE_DATA_SIZE
 	call CopyData

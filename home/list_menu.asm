@@ -140,11 +140,23 @@ DisplayListMenuIDLoop::
 	ld a, [hl] ; a = item quantity
 	ld [wMaxItemQuantity], a
 .skipGettingQuantity
+	ld a, [wListMenuID]
+	cp MOVESLISTMENU
+	jr z, .getMoveName
 	ld a, [wCurItem]
 	ld [wNameListIndex], a
 	ld a, BANK(ItemNames)
 	ld [wPredefBank], a
 	call GetName
+	jr .storeChosenEntry
+.getMoveName
+; Snow Blue: GetName above would look a move up in ItemNames' bank (the redraw leaves
+; wNameListType at MOVE_NAME). Vanilla never picks from a MOVESLISTMENU, so the bug
+; slept until the move relearner: some moves left no '@' in wNameBuffer and the copy
+; below ran through all of RAM.
+	ld a, [wCurItem]
+	ld [wNamedObjectIndex], a
+	call GetMoveName
 	jr .storeChosenEntry
 .pokemonList
 	ASSERT wCurListMenuItem == wCurPartySpecies

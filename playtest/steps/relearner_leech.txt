@@ -1,0 +1,29 @@
+# after relearner_twice (list open; Snom knows AMNESIA, ICE BEAM, LEECH LIFE, LIGHT SCREEN):
+# forget LEECH LIFE for AURORA BEAM, then come back and relearn LEECH LIFE.
+# Picking LEECH LIFE wiped RAM before the home/list_menu.asm fix (2026-10-20).
+mash down 3 10
+a 60
+until a forgotten
+wait 30
+down 20
+down 20
+a 60
+until a learned
+ram wPartyMon1Moves 4
+a 60
+a 60
+a 60
+until a remember
+a 60
+a 60
+a 60
+a 60
+wait 120
+mash down 2 10
+a 60
+until a forgotten
+wait 30
+a 60
+until a learned
+text
+ram wPartyMon1Moves 4

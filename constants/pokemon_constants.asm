@@ -38,7 +38,7 @@
 	const PINSIR             ; $1D
 	const TANGELA            ; $1E
 	const SNOM               ; $1F
-	const_skip               ; $20
+	const STARSNOM           ; $20 ; Snow Blue: ????, the truck superboss
 	const GROWLITHE          ; $21
 	const ONIX               ; $22
 	const FEAROW             ; $23

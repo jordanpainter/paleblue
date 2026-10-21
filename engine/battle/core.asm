@@ -6130,11 +6130,16 @@ LoadEnemyMonData:
 	ld [wPokedexNum], a
 	predef IndexToPokedex
 	ld a, [wPokedexNum]
+; Snow Blue: ???? has no Pokédex number. Vanilla sets "seen" bit -1 here for dex 0,
+; which lands in the bag (the MissingNo. item glitch), so skip it.
+	and a
+	jr z, .noPokedexNumber
 	dec a
 	ld c, a
 	ld b, FLAG_SET
 	ld hl, wPokedexSeen
 	predef FlagActionPredef ; mark this mon as seen in the pokedex
+.noPokedexNumber
 	ld hl, wEnemyMonLevel
 	ld de, wEnemyMonUnmodifiedLevel
 	ld bc, 1 + NUM_STATS * 2

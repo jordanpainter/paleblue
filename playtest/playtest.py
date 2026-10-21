@@ -1,6 +1,7 @@
 """Headless playtest: run a step file against pokeblue.gbc in PyBoy, saving screenshots.
 
-Usage: .venv/bin/python playtest/playtest.py steps/FILE.txt [--state IN.state] [--save OUT.state]
+Usage: .venv/bin/python playtest/playtest.py steps/FILE.txt [--state IN.state] [--save OUT.state] [--sav GAME.sav]
+--sav boots with that in-game save loaded (read only; nothing is written back).
 
 Step file, one per line (# comments):
     a / b / start / select / up / down / left / right [N]   press, then wait N frames (default 20)
@@ -12,6 +13,7 @@ Step file, one per line (# comments):
     ram LABEL [COUNT]                                       print COUNT bytes at a pokeblue.sym label
     text                                                    print the on-screen text
     poke LABEL HEX...                                       write bytes starting at a pokeblue.sym label
+LABEL can carry an offset, e.g. wEventFlags+188 (decimal) or wEventFlags+0xBC.
 """
 import sys
 from pathlib import Path
@@ -31,6 +33,11 @@ def load_symbols():
                 continue
             syms[name] = int(addr.split(":")[1], 16)
     return syms
+
+
+def addr(syms, label):
+    name, _, off = label.partition("+")
+    return syms[name] + (int(off, 0) if off else 0)
 
 
 def charmap(code):
@@ -56,10 +63,12 @@ def main():
         steps = ROOT / "playtest" / steps
     state_in = args[args.index("--state") + 1] if "--state" in args else None
     state_out = args[args.index("--save") + 1] if "--save" in args else None
+    sav = args[args.index("--sav") + 1] if "--sav" in args else None
 
     OUT.mkdir(parents=True, exist_ok=True)
     syms = load_symbols()
-    pb = PyBoy(str(ROOT / "pokeblue.gbc"), window="null", sound_emulated=False)
+    ram = open(sav, "rb") if sav else None
+    pb = PyBoy(str(ROOT / "pokeblue.gbc"), window="null", sound_emulated=False, ram_file=ram)
     pb.set_emulation_speed(0)
     if state_in:
         with open(state_in, "rb") as f:
@@ -90,11 +99,11 @@ def main():
                 raise SystemExit(f"never saw {want!r}")
         elif cmd == "poke":
             for i, byte in enumerate(rest[1:]):
-                pb.memory[syms[rest[0]] + i] = int(byte, 16)
+                pb.memory[addr(syms, rest[0]) + i] = int(byte, 16)
         elif cmd == "untilram":
-            addr, want, buttons = syms[rest[0]], int(rest[1], 16), rest[2:]
+            at, want, buttons = addr(syms, rest[0]), int(rest[1], 16), rest[2:]
             for i in range(300):
-                if pb.memory[addr] == want:
+                if pb.memory[at] == want:
                     break
                 press(buttons[i % len(buttons)], 10)
             else:
@@ -107,8 +116,8 @@ def main():
             pb.screen.image.convert("RGB").save(OUT / f"{rest[0]}.png")
             print("shot", rest[0])
         elif cmd == "ram":
-            addr, n = syms[rest[0]], int(rest[1]) if len(rest) > 1 else 1
-            print(rest[0], " ".join(f"{pb.memory[addr + i]:02x}" for i in range(n)))
+            at, n = addr(syms, rest[0]), int(rest[1]) if len(rest) > 1 else 1
+            print(rest[0], " ".join(f"{pb.memory[at + i]:02x}" for i in range(n)))
         else:
             raise SystemExit(f"unknown step: {raw}")
 

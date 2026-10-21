@@ -153,3 +153,7 @@ INCLUDE "data/pokemon/base_stats/mewtwo.asm"
 INCLUDE "data/pokemon/base_stats/mew.asm"
 INCLUDE "data/pokemon/base_stats/snom.asm"
 	assert_table_length NUM_POKEMON
+
+StarSnomBaseStats::
+INCLUDE "data/pokemon/base_stats/starsnom.asm"
+	ASSERT @ - StarSnomBaseStats == BASE_DATA_SIZE

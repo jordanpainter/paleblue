@@ -1,0 +1,17 @@
+# Celadon (after fly_celadon): into the Pokémon Center and talk to the move relearner
+# (the old Cable Club receptionist). Snom is set to Lv 48 knowing only Ice Beam first.
+poke wPartyMon1Level 30
+poke wPartyMon1Moves 3a 00 00 00
+up 20
+wait 90
+ram wCurMap
+mash up 3 4
+mash right 8 4
+mash up 3 4
+ram wYCoord
+ram wXCoord
+shot relearner_spot
+until a remember
+text
+wait 40
+shot relearner_hello

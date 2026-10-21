@@ -1,5 +1,7 @@
 VermilionDock_Script:
+	call VermilionDockShipGoneScript
 	call EnableAutoTextBoxDrawing
+	call VermilionDockStarSnomScript
 	CheckEventHL EVENT_STARTED_WALKING_OUT_OF_DOCK
 	jr nz, .walking_out_of_dock
 	CheckEventReuseHL EVENT_GOT_HM01
@@ -208,9 +210,115 @@ VermilionDock_EraseSSAnne:
 	call DelayFrames
 	ret
 
+; Snow Blue: in vanilla you can never come back after the S.S. Anne sails, so the map
+; still has the ship in it. Now you can (for the truck), so swap it for water on load.
+VermilionDockShipGoneScript:
+	ld hl, wCurrentMapScriptFlags
+	bit BIT_CUR_MAP_LOADED_1, [hl]
+	res BIT_CUR_MAP_LOADED_1, [hl]
+	ret z
+	CheckEvent EVENT_SS_ANNE_LEFT
+	ret z
+	ld c, 5 ; the ship is blocks 5-8 of rows 1 and 2
+.loop
+	push bc
+	ld a, $01 ; water, row 1
+	ld [wNewTileBlockID], a
+	ld b, 1
+	predef ReplaceTileBlock
+	pop bc
+	push bc
+	ld a, $0d ; water, row 2
+	ld [wNewTileBlockID], a
+	ld b, 2
+	predef ReplaceTileBlock
+	pop bc
+	inc c
+	ld a, c
+	cp 9
+	jr nz, .loop
+	ret
+
+; Snow Blue: ????, the floating Snom under the truck. StarSnomTruck (a hidden event)
+; flags the press; this runs the encounter, then judges it once the battle is over.
+VermilionDockStarSnomScript:
+	ld a, [wCurOpponent]
+	and a
+	ret nz ; the battle hasn't started yet
+	CheckEventHL EVENT_FIGHTING_STARSNOM
+	jr nz, .afterBattle
+	CheckEventReuseHL EVENT_CHECKED_STARSNOM_TRUCK
+	ret z
+	ResetEventReuseHL EVENT_CHECKED_STARSNOM_TRUCK
+	CheckEvent EVENT_STARSNOM_GAVE_PSYCHIC
+	ld a, TEXT_VERMILIONDOCK_JUST_A_TRUCK
+	jr nz, .showText
+	CheckEvent EVENT_BEAT_STARSNOM
+	ld a, TEXT_VERMILIONDOCK_STARSNOM_LIGHT ; won before, but turned Psychic down
+	jr nz, .showText
+	ld a, TEXT_VERMILIONDOCK_STARSNOM_APPEARS
+	ldh [hTextID], a
+	call DisplayTextID
+	SetEvent EVENT_FIGHTING_STARSNOM
+	ld a, STARSNOM
+	ld [wCurOpponent], a
+	ld a, 100
+	ld [wCurEnemyLevel], a
+	ret
+.afterBattle
+	ResetEventReuseHL EVENT_FIGHTING_STARSNOM
+	; lost: the blackout warps you away, and by the next visit the enemy is someone else
+	ld a, [wEnemyMonSpecies]
+	cp STARSNOM
+	ret nz
+	ld hl, wEnemyMonHP
+	ld a, [hli]
+	or [hl]
+	ld a, TEXT_VERMILIONDOCK_STARSNOM_FLOATED_BACK ; you ran
+	jr nz, .showText
+	SetEvent EVENT_BEAT_STARSNOM
+	ld a, TEXT_VERMILIONDOCK_STARSNOM_LIGHT
+.showText
+	ldh [hTextID], a
+	jp DisplayTextID
+
 VermilionDock_TextPointers:
 	def_text_pointers
-	dw_const VermilionDockUnusedText, TEXT_VERMILIONDOCK_UNUSED
+	dw_const VermilionDockUnusedText,             TEXT_VERMILIONDOCK_UNUSED
+	dw_const VermilionDockStarSnomAppearsText,    TEXT_VERMILIONDOCK_STARSNOM_APPEARS
+	dw_const VermilionDockStarSnomLightText,      TEXT_VERMILIONDOCK_STARSNOM_LIGHT
+	dw_const VermilionDockStarSnomFloatedBackText, TEXT_VERMILIONDOCK_STARSNOM_FLOATED_BACK
+	dw_const VermilionDockJustATruckText,         TEXT_VERMILIONDOCK_JUST_A_TRUCK
+
+VermilionDockStarSnomAppearsText:
+	text_far _VermilionDockStarSnomAppearsText
+	text_end
+
+VermilionDockStarSnomLightText:
+	text_far _VermilionDockStarSnomLightText
+	text_asm
+	xor a
+	ld [wWhichPokemon], a
+	ld a, PSYCHIC_M
+	ld [wMoveNum], a
+	ld [wNamedObjectIndex], a
+	call GetMoveName
+	call CopyToStringBuffer
+	predef LearnMove
+	ld a, b
+	and a
+	jr z, .notLearned ; turned it down: the truck offers it again
+	SetEvent EVENT_STARSNOM_GAVE_PSYCHIC
+.notLearned
+	jp TextScriptEnd
+
+VermilionDockStarSnomFloatedBackText:
+	text_far _VermilionDockStarSnomFloatedBackText
+	text_end
+
+VermilionDockJustATruckText:
+	text_far _VermilionDockJustATruckText
+	text_end
 
 VermilionDockUnusedText:
 	text_far _VermilionDockUnusedText

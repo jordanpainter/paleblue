@@ -39,6 +39,8 @@ VermilionCity_ScriptPointers:
 	dw_const VermilionCityPlayerAllowedToPassScript, SCRIPT_VERMILIONCITY_PLAYER_ALLOWED_TO_PASS
 
 VermilionCityDefaultScript:
+	CheckEvent EVENT_SS_ANNE_LEFT
+	ret nz ; Snow Blue: the ship's gone, but the dock (and its truck) stay open
 	ld a, [wSpritePlayerStateData1FacingDirection]
 	and a ; cp SPRITE_FACING_DOWN
 	ret nz

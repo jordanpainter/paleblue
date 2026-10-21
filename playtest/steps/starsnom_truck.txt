@@ -1,0 +1,65 @@
+# Snow Blue: the ???? easter egg, end to end. From the to_water state: Fly to Vermilion,
+# walk to the dock (route from playtest/route.py), Surf to the truck, press A, win, get Psychic.
+# Bag: all five HMs; badges; every town; S.S. Anne gone (wEventFlags+188: GOT_HM01, SS_ANNE_LEFT,
+# WALKED_PAST_GUARD, STARTED/WALKED_OUT_OF_DOCK).
+poke wNumBagItems 06 c4 01 c5 01 c6 01 c7 01 c8 01 45 01 ff
+poke wObtainedBadges ff
+poke wTownVisitedFlag ff ff
+poke wEventFlags+188 3d
+start 30
+a 40
+a 40
+down 10
+a 60
+until down VERMILION
+a 200
+wait 200
+ram wCurMap
+ram wYCoord
+ram wXCoord
+mash down 3 4
+mash right 5 4
+mash down 2 4
+mash right 2 4
+mash down 5 4
+mash right 12 4
+mash down 12 4
+mash left 6 4
+down 4
+mash left 5 4
+mash down 2 4
+left 4
+down 4
+down 4
+wait 150
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot dock_arrived
+# the sailor says the ship set sail, then lets you through (Snow Blue)
+a 40
+down 4
+wait 150
+ram wCurMap
+ram wYCoord
+ram wXCoord
+shot dock_inside
+# down the pier, Surf (third field move with five HMs), paddle right, step ashore under the truck
+down 4
+start 30
+a 40
+a 40
+down 10
+down 10
+a 90
+mash b 3 30
+ram wWalkBikeSurfState
+mash right 6 4
+up 4
+up 4
+ram wYCoord
+ram wXCoord
+shot under_truck
+a 40
+text
+shot truck_text

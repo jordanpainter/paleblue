@@ -1,4 +1,5 @@
 CreditsTextPointers:
+; Snow Blue: every name is SNOM (job titles kept)
 ; entries correspond to CRED_* constants
 	table_width 2
 	dw CredVersion
@@ -72,62 +73,62 @@ IF DEF(_RED)
 	db -8, "RED VERSION STAFF@"
 ENDC
 IF DEF(_BLUE)
-	db -8, "BLUE VERSION STAFF@"
+	db -7, "PALE BLUE STAFF@" ; Snow Blue
 ENDC
 CredTajiri:
-	db -6, "SATOSHI TAJIRI@"
+	db -2, "SNOM@"
 CredTaOota:
-	db -6, "TAKENORI OOTA@"
+	db -2, "SNOM@"
 CredMorimoto:
-	db -7, "SHIGEKI MORIMOTO@"
+	db -2, "SNOM@"
 CredWatanabe:
-	db -7, "TETSUYA WATANABE@"
+	db -2, "SNOM@"
 CredMasuda:
-	db -6, "JUNICHI MASUDA@"
+	db -2, "SNOM@"
 CredNisino:
-	db -5, "KOHJI NISINO@"
+	db -2, "SNOM@"
 CredSugimori:
-	db -5, "KEN SUGIMORI@"
+	db -2, "SNOM@"
 CredNishida:
-	db -6, "ATSUKO NISHIDA@"
+	db -2, "SNOM@"
 CredMiyamoto:
-	db -7, "SHIGERU MIYAMOTO@"
+	db -2, "SNOM@"
 CredKawaguchi:
-	db -8, "TAKASHI KAWAGUCHI@"
+	db -2, "SNOM@"
 CredIshihara:
-	db -8, "TSUNEKAZU ISHIHARA@"
+	db -2, "SNOM@"
 CredYamauchi:
-	db -7, "HIROSHI YAMAUCHI@"
+	db -2, "SNOM@"
 CredZinnai:
-	db -7, "HIROYUKI ZINNAI@"
+	db -2, "SNOM@"
 CredHishida:
-	db -7, "TATSUYA HISHIDA@"
+	db -2, "SNOM@"
 CredSakai:
-	db -6, "YASUHIRO SAKAI@"
+	db -2, "SNOM@"
 CredYamaguchi:
-	db -7, "WATARU YAMAGUCHI@"
+	db -2, "SNOM@"
 CredYamamoto:
-	db -8, "KAZUYUKI YAMAMOTO@"
+	db -2, "SNOM@"
 CredTaniguchi:
-	db -8, "RYOHSUKE TANIGUCHI@"
+	db -2, "SNOM@"
 CredNonomura:
-	db -8, "FUMIHIRO NONOMURA@"
+	db -2, "SNOM@"
 CredFuziwara:
-	db -7, "MOTOFUMI FUZIWARA@"
+	db -2, "SNOM@"
 CredMatsusima:
-	db -7, "KENJI MATSUSIMA@"
+	db -2, "SNOM@"
 CredTomisawa:
-	db -7, "AKIHITO TOMISAWA@"
+	db -2, "SNOM@"
 CredKawamoto:
-	db -7, "HIROSHI KAWAMOTO@"
+	db -2, "SNOM@"
 CredKakei:
-	db -6, "AKIYOSHI KAKEI@"
+	db -2, "SNOM@"
 CredTsuchiya:
-	db -7, "KAZUKI TSUCHIYA@"
+	db -2, "SNOM@"
 CredTaNakamura:
-	db -6, "TAKEO NAKAMURA@"
+	db -2, "SNOM@"
 CredYuda:
-	db -6, "MASAMITSU YUDA@"
+	db -2, "SNOM@"
 CredMon:
 	db -3, "#MON@"
 CredDirector:
@@ -161,42 +162,42 @@ CredProducer:
 CredExecutive:
 	db -8, "EXECUTIVE PRODUCER@"
 CredTamada:
-	db -6, "SOUSUKE TAMADA@"
+	db -2, "SNOM@"
 CredSaOota:
-	db -5, "SATOSHI OOTA@"
+	db -2, "SNOM@"
 CredYoshikawa:
-	db -6, "RENA YOSHIKAWA@"
+	db -2, "SNOM@"
 CredToOota:
-	db -6, "TOMOMICHI OOTA@"
+	db -2, "SNOM@"
 CredUSStaff:
 	db -7, "US VERSION STAFF@"
 CredUSCoord:
 	db -7, "US COORDINATION@"
 CredTilden:
-	db -5, "GAIL TILDEN@"
+	db -2, "SNOM@"
 CredKawakami:
-	db -6, "NAOKO KAWAKAMI@"
+	db -2, "SNOM@"
 CredHiNakamura:
-	db -6, "HIRO NAKAMURA@"
+	db -2, "SNOM@"
 CredGiese:
-	db -6, "WILLIAM GIESE@"
+	db -2, "SNOM@"
 CredOsborne:
-	db -5, "SARA OSBORNE@"
+	db -2, "SNOM@"
 CredTrans:
 	db -7, "TEXT TRANSLATION@"
 CredOgasawara:
-	db -6, "NOB OGASAWARA@"
+	db -2, "SNOM@"
 CredIwata:
-	db -5, "SATORU IWATA@"
+	db -2, "SNOM@"
 CredIzushi:
-	db -7, "TAKEHIRO IZUSHI@"
+	db -2, "SNOM@"
 CredHarada:
-	db -7, "TAKAHIRO HARADA@"
+	db -2, "SNOM@"
 CredMurakawa:
-	db -7, "TERUKI MURAKAWA@"
+	db -2, "SNOM@"
 CredFukui:
-	db -5, "KOHTA FUKUI@"
+	db -2, "SNOM@"
 CredClub:
-	db -9, "NCL SUPER MARIO CLUB@"
+	db -2, "SNOM@"
 CredPAAD:
-	db -5, "PAAD TESTING@"
+	db -2, "SNOM@"

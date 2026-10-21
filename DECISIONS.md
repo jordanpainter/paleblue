@@ -111,3 +111,156 @@ rest of the routine is now unreachable, left in place).
 In-game trades are already impossible: each NPC checks you offer the species they
 asked for, none asks for Snom, and you can't catch what they want. Link-cable
 trades with another cartridge are not blocked (out of scope for a solo run).
+
+## 2026-10-20: Snom's learnset (closes the open learnset item)
+Lv 1 Powder Snow + String Shot, 9 Leech Life, 14 Mist, 18 Aurora Beam, 23 Light Screen,
+28 Haze, 33 Ice Beam, 38 Rest, 43 Amnesia, 50 Blizzard. TMs add Reflect (TM33).
+Snom is an Ice special attacker (Gen 1 Bug moves run off its 25 Attack), so damage is
+all Ice; the rest is Frosmoth's kit translated: Mist (its own), Light Screen for
+Aurora Veil, Haze for Defog, Amnesia for Quiver Dance. Moves land ahead of the gyms
+they matter for. Amnesia is the win condition (+2 Special is offence and special
+defence in Gen 1). Rejected: Growth instead of Amnesia (too slow a grind), Bug
+attacks for flavour (useless off 25 Attack).
+The Champion's Blizzard override is gone: his Lv 65 Snom already has Ice Beam, Rest,
+Amnesia, Blizzard by level (Pidgeot's Sky Attack override stays).
+
+## 2026-10-20: Playthrough stats via one mGBA Lua script
+
+Jordan wanted per-battle stats and per-save snapshots. Both live in one mGBA script
+(`stats/stats_log.lua`) rather than a Lua battle logger plus a Python `.sav` watcher,
+so there's nothing extra to keep running in a terminal. Save detection compares only
+the save block (`sGameData` to `sMainDataCheckSum`): Gen 1 uses the rest of the save
+chip as scratch for decompressing pics, so the whole file changes during normal play.
+No turn count: Gen 1 keeps no turn counter, so battles log game-time seconds instead.
+The CSVs are personal playthrough data; whether they go on GitHub is Jordan's call (open).
+
+## 2026-10-20: Turn-by-turn log reads the battle text box
+
+For the agent later, `stats/turns.csv` logs every battle message with both sides' HP,
+status, stat stages and effects (Light Screen, Bide, Mist...) at that moment. mGBA 0.10.5
+scripts can't break on game code (that arrived after 0.10.5) and Gen 1 keeps no turn
+counter, so the script transcribes the text box: a message counts once it has stayed
+put longer than the text speed's per-letter delay, and a turn starts when the FIGHT menu
+appears after something happened. Messages give actor and move or item for free
+("Enemy STARMIE used WATER GUN!"). HP in a "used" row is before the hit; the rows after
+it show the result. Long trainer speeches may log as overlapping screenfuls.
+`battles.csv` gained a `battle` id column (date-time plus a session counter, since two
+fast-forwarded fights can start in the same second); the script pads older files.
+
+## 2026-10-20: Move relearner in every Pokémon Center, free
+
+With one Pokémon for the whole game, a level-up move you skip is gone forever (Gen 1
+has no relearner, and Amnesia has no TM). Jordan hit exactly this at Lv 43. The Cable
+Club receptionist is repurposed as the relearner: she's in every center from Viridian
+on (plus Indigo Plateau), and link play is pointless in a Snom-only game, so one hook
+change (`TX_SCRIPT_CABLE_CLUB_RECEPTIONIST`) covers the whole map. Rejected: one NPC
+in Lavender or Celadon (backtracking for anyone who skips an early move). Free,
+because it's a soft-lock fix, not a reward. It lists Lv 1 moves too (so a dropped
+Powder Snow comes back). Link battles and trades are gone; `cable_club_npc.asm` is
+left in place, unused.
+
+## 2026-10-20: Agent goal is the whole game, unassisted (approach open)
+
+Jordan wants the agent to play all of Snow Blue on its own, not just battles. Open:
+what "on its own" means (learns from nothing via RL, or autonomous with tools we build
+such as pathfinding and a RAM reader), and what makes decisions (RL policy, local LLM
+via Ollama, Claude, or layers of those). Jordan wants to be part of these calls.
+
+## 2026-10-20: Agent architecture: layered (closes the approach question above)
+
+Jordan picked the layered design: we build skills (a RAM reader, a pathfinder from the
+disassembly's map data, a battle routine) and the agent plays the whole game with no
+human input. The battle brain is learned with RL from save states, since battles are
+where a one-Snom run is hard; a planning brain (LLM: local via Ollama, or Claude; open)
+picks goals and decides when to grind or heal. Rejected: pure RL from nothing
+(unrealistic for a whole game on a laptop) and a pure LLM agent (weakest where Snow
+Blue is hardest). Jordan's turns.csv is the benchmark.
+
+## 2026-10-20: Renamed to "Pale Blue"; the title screen is all Snom, in poses
+
+Jordan renamed the game Pale Blue. The repo, folder and internal "snow-blue" names stay
+until the GitHub repo exists (renaming the folder mid-playthrough would break the venv
+and logger paths); the GitHub repo can start as `pale-blue`. Title lettering ("Pale
+Blue" vs "Pale Blue Version") is open, mocked in `art/out/lettering_on_title.png`.
+The title screen's Pokémon are all Snom, each time in a random one of seven poses Jordan
+approved (normal, look back, hop, blink, happy, sleepy, surprised), never the same twice
+running. Poses are code-defined edits of `art/snom_front.png` in `art/build_snom.py`,
+so they follow edits to the front sprite (as long as the eye stays put). They live in
+their own pics section because Snom's pic bank is full. Snom is peach on the SGB title
+because the title gives the mon, the player and the copyright one shared palette.
+
+## 2026-10-20: Title says "Pale Blue"; Snom gets its own icy palette (closes the lettering item)
+
+Jordan picked "Pale Blue" (42 px, shorter than "Pale Blue Version"). It's built by
+`art/build_title_text.py` into `gfx/title/blue_version.png`, same font as the original
+plus a drawn P and a. On the SGB title, a fourth colour block gives Snom's 5x5 pic area
+PAL_CYANMON (palette slot 3 was unused). The player's fist and ball sit inside that
+area, so they tint blue too; Jordan accepted it ("no worries if it ends weird").
+The SGB border still says BLUE with the vanilla starters.
+
+## 2026-10-20: Title lettering is "Pale Blue Version", centred (supersedes "Pale Blue" above)
+
+Jordan changed it to "Pale Blue Version" and pointed out the lettering sat off centre.
+It's 80 px with 4 px word gaps (the original used 6), filling the 10 tiles the title
+reserves for this text, printed from column 5 so it's centred on screen (the vanilla
+8-tile slot at column 7 sits 8 px right of centre).
+
+## 2026-10-20: Relearner crash: dormant vanilla bug in the move list menu; save lost to 22:07
+
+Picking Leech Life in the relearner froze Jordan's game and filled RAM with junk (a
+rescue script that copied RAM into save format found nothing usable). Cause: when you
+pick from a MOVESLISTMENU, home/list_menu.asm looks the entry up with GetName in
+ItemNames' bank while the redraw has left wNameListType at MOVE_NAME, so it copies 20
+bytes of the wrong bank into wNameBuffer. For some moves those bytes hold no '@', and
+CopyToStringBuffer then copies through all of RAM. Vanilla never picks from a move list,
+so the bug never fired. Fix: that menu path calls GetMoveName for move lists. Tested on
+fresh states: the exact Aurora Beam then Leech Life sequence, plus every list entry.
+First suspect (setting wNameListType before opening the menu) didn't work, because each
+redraw resets it. Jordan lost the shopping and relearns after the 22:07 save, which is
+backed up in saves_backup/. Separately, the ROM had been rebuilt while mGBA ran it;
+that wasn't the cause (it reproduces on a clean build) but is now banned in CLAUDE.md.
+
+## 2026-10-21: ????, the floating Snom under the Vermilion Dock truck
+
+A post-game superboss Jordan designed: press A on the dock truck (the one from the Mew
+myth) to fight ????, Lv 100, Ice/Psychic, Psychic/Blizzard/Amnesia/Light Screen. Win and
+Snom learns Psychic, which it can't get any other way (decline it and the truck offers it
+again). Leech Life (Bug beats Psychic in Gen 1) plus Light Screen and Amnesia is the
+intended answer. Pink floating sprite with stars and happy eyes (mockup E, approved),
+built from the editable front in art/build_snom.py. Species slot $20 (a MissingNo. slot)
+with no Pokédex number: GetMonHeader, UncompressMonSprite and the palette lookup
+special-case STARSNOM, and the battle's "seen" flag is skipped for dex 0 (which also
+defuses the vanilla MissingNo. item glitch). Four spare event flags after the dock's.
+To make the truck reachable at all: the dock guard now lets you in after the S.S. Anne
+sails (vanilla needed a traded Cut user to ever get there), and the dock swaps the ship's
+blocks for water on load. Base stats are 100s for now; tuning by simulation is open.
+
+## 2026-10-21: Marts sell PP restores instead of Poké Balls
+
+With one Pokémon, every fight drains the same four moves, and Jordan gave up more than
+once mid-dungeon on empty PP (and ran dry at the Elite Four). Vanilla prices PP items at
+₽0, so no mart could sell them, while every mart sells balls Pale Blue can't use. Balls
+are swapped out: Ether (₽1,200) in the early marts, Ether + Max Ether (₽2,000) from
+Celadon/Fuchsia/Saffron/Cinnabar, Elixir (₽3,000) + Max Elixir (₽4,500) at Indigo
+Plateau. Prices follow later generations. Jordan's save got ₽50,000 (edited, checksum
+fixed; backup in saves_backup/).
+
+## 2026-10-21: Continue refreshes the tileset's ROM pointers
+
+Saves store ROM addresses (wTilesetCollisionPtr and friends). Adding code to the home
+bank moved the collision lists 14 bytes, so Jordan's save loaded with a pointer into the
+wrong list and every tile counted as a wall. Fix: CopyTilesetHeader (split out of
+LoadTilesetHeader, without its warp-position side effects) runs when you pick Continue,
+so any save loads cleanly in any later build.
+
+## 2026-10-21: Snom surfs, Snom is the party icon, and the credits are all Snom
+
+Jordan's picks after beating the game. Surf sprite: Wild Card's follower Snom
+(art/raw/overworld.png), cropped to 16x16 and shaded flat (option B), written over
+gfx/sprites/seel.png by art/build_snom.py. Gen 1's "water" party icon is that same Seel
+sprite, so Snom's menu icon is now ICON_WATER and shows the same Snom (the bug icon is
+untouched). Credits: every person and team name reads SNOM (job titles kept), the heading
+is PALE BLUE STAFF, every credits Pokémon is Snom, and ???? makes a cameo third from last
+(LoadFrontSpriteByMonIndex lets STARSNOM through the dex-0 "Rhydon trap"). Credits tested
+only by their pieces: jumping into the credits routine headless mangles the screen, so a
+full run needs a real Elite Four win.

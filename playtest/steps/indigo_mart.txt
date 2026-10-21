@@ -1,0 +1,24 @@
+# Boot Jordan's save (via --sav, read only), check money, and open the Indigo Plateau Mart
+wait 400
+until a CONTINUE
+a 60
+a 120
+wait 200
+ram wCurMap
+ram wYCoord
+ram wXCoord
+ram wPlayerMoney 3
+mash left 6 4
+mash up 2 4
+left 4
+ram wYCoord
+ram wXCoord
+shot at_counter
+a 60
+wait 60
+text
+until a BUY
+a 60
+wait 60
+text
+shot indigo_mart

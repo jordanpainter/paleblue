@@ -375,3 +375,18 @@ LoreleiPic::       INCBIN "gfx/trainers/lorelei.pic"
 ChannelerPic::     INCBIN "gfx/trainers/channeler.pic"
 AgathaPic::        INCBIN "gfx/trainers/agatha.pic"
 LancePic::         INCBIN "gfx/trainers/lance.pic"
+
+
+SECTION "Snom Extra Pics", ROMX
+
+; Snow Blue: the title screen cycles through these (art/build_snom.py makes them)
+SnomPoseNormalPic::    INCBIN "gfx/pokemon/front/snom_pose_normal.pic"
+SnomPoseLookBackPic::  INCBIN "gfx/pokemon/front/snom_pose_look_back.pic"
+SnomPoseHopPic::       INCBIN "gfx/pokemon/front/snom_pose_hop.pic"
+SnomPoseBlinkPic::     INCBIN "gfx/pokemon/front/snom_pose_blink.pic"
+SnomPoseHappyPic::     INCBIN "gfx/pokemon/front/snom_pose_happy.pic"
+SnomPoseSleepyPic::    INCBIN "gfx/pokemon/front/snom_pose_sleepy.pic"
+SnomPoseSurprisedPic:: INCBIN "gfx/pokemon/front/snom_pose_surprised.pic"
+
+; Snow Blue: ????, the floating Snom under the truck (UncompressMonSprite special-cases its bank)
+StarSnomPicFront::     INCBIN "gfx/pokemon/front/starsnom.pic"

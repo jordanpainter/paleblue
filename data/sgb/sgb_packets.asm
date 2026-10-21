@@ -121,11 +121,12 @@ BlkPacket_Slots:
 	db $00
 
 BlkPacket_Titlescreen:
-	ATTR_BLK 3
+	ATTR_BLK 4
 	ATTR_BLK_DATA %011, 0,0,0, 00,00, 19,07 ; pokemon logo: pal 0
 	ATTR_BLK_DATA %010, 1,1,0, 00,08, 19,09 ; version text: pal 1
 	ATTR_BLK_DATA %011, 2,2,0, 00,10, 19,17 ; player, mon, copyright text: pal 2
-	ds 12, 0
+	ATTR_BLK_DATA %011, 3,3,0, 06,12, 10,16 ; Snow Blue: Snom's 5x5 pic: pal 3
+	ds 6, 0
 
 ; unused
 	db $03, 00,00, 19,07, $00
@@ -221,7 +222,7 @@ PalPacket_Black:          PAL_SET PAL_BLACK, PAL_BLACK, PAL_BLACK, PAL_BLACK
 PalPacket_TownMap:        PAL_SET PAL_TOWNMAP, 0, 0, 0
 PalPacket_Pokedex:        PAL_SET PAL_BROWNMON, 0, 0, 0
 PalPacket_Slots:          PAL_SET PAL_SLOTS1, PAL_SLOTS2, PAL_SLOTS3, PAL_SLOTS4
-PalPacket_Titlescreen:    PAL_SET PAL_LOGO2, PAL_LOGO1, PAL_MEWMON, PAL_PURPLEMON
+PalPacket_Titlescreen:    PAL_SET PAL_LOGO2, PAL_LOGO1, PAL_MEWMON, PAL_CYANMON ; Snow Blue: was PAL_PURPLEMON (unused)
 PalPacket_TrainerCard:    PAL_SET PAL_MEWMON, PAL_BADGE, PAL_REDMON, PAL_YELLOWMON
 PalPacket_Generic:        PAL_SET PAL_MEWMON, 0, 0, 0
 PalPacket_NidorinoIntro:  PAL_SET PAL_PURPLEMON, PAL_BLACK, 0, 0

@@ -1,0 +1,30 @@
+# after starsnom_truck (encounter text open): win the ???? fight with a propped-up Snom
+# (Lv 100, 999 HP; ???? on 1 HP), then check the Psychic reward and the event flags
+poke wPartyMon1Level 64
+poke wPartyMon1Exp 0f 42 40
+poke wPartyMon1HP 03 e7
+poke wPartyMon1Stats 03 e7
+untilram wIsInBattle 01 a
+until a FIGHT
+shot starsnom_battle
+text
+ram wEnemyMonSpecies
+ram wEnemyMonLevel
+poke wEnemyMonHP 00 01
+until a fainted
+text
+until a learned
+text
+shot starsnom_reward
+ram wPartyMon1Moves 4
+ram wEventFlags+188 2
+mash a 6 40
+wait 120
+ram wIsInBattle
+# check the truck again: nothing more (it gave Psychic)
+up 4
+a 40
+wait 60
+text
+shot truck_after
+ram wEventFlags+188 2

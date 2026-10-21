@@ -193,6 +193,7 @@ INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "gfx/trade.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
+INCLUDE "engine/events/move_relearner.asm"
 INCLUDE "engine/battle/move_effects/heal.asm"
 INCLUDE "engine/battle/move_effects/transform.asm"
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
@@ -288,6 +289,7 @@ INCLUDE "engine/events/hidden_events/route_15_binoculars.asm"
 INCLUDE "engine/events/hidden_events/museum_fossils.asm"
 INCLUDE "engine/events/hidden_events/school_blackboard.asm"
 INCLUDE "engine/events/hidden_events/vermilion_gym_trash.asm"
+INCLUDE "engine/events/hidden_events/star_snom_truck.asm"
 
 
 SECTION "Cinnabar Lab Fossils", ROMX

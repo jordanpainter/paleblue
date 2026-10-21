@@ -31,7 +31,7 @@ MonsterNames::
 	dname "PINSIR"
 	dname "TANGELA"
 	dname "SNOM"
-	dname "MISSINGNO."
+	dname "????"
 	dname "GROWLITHE"
 	dname "ONIX"
 	dname "FEAROW"

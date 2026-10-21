@@ -77,6 +77,7 @@ HiddenEventMaps:
 	hidden_event_map FIGHTING_DOJO
 	hidden_event_map ROUTE_10
 	hidden_event_map INDIGO_PLATEAU_LOBBY
+	hidden_event_map VERMILION_DOCK ; Snow Blue
 	hidden_event_map CINNABAR_LAB_FOSSIL_ROOM
 	hidden_event_map BIKE_SHOP
 	hidden_event_map ROUTE_11
@@ -584,6 +585,11 @@ DEF ANY_FACING EQU $d0
 
 	hidden_events_for SEAFOAM_ISLANDS_B3F
 	hidden_event  9, 16, HiddenItems, MAX_ELIXER
+	db -1 ; end
+
+	hidden_events_for VERMILION_DOCK ; Snow Blue: the truck (press A from below)
+	hidden_event 20,  0, StarSnomTruck, SPRITE_FACING_UP
+	hidden_event 21,  0, StarSnomTruck, SPRITE_FACING_UP
 	db -1 ; end
 
 	hidden_events_for VERMILION_CITY

@@ -151,5 +151,5 @@ MonPartyData:
 	nybble ICON_SNAKE     ; Dragonite
 	nybble ICON_MON       ; Mewtwo
 	nybble ICON_MON       ; Mew
-	nybble ICON_BUG       ; Snom
+	nybble ICON_WATER     ; Snom (Snow Blue: the surf sprite, which is Snom too)
 	end_nybble_array NUM_POKEMON
