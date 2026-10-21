@@ -21,7 +21,7 @@ progress.
 
 ## Artwork
 
-`artwork/` has box art for your ROM collection, in three shades of blue. It's built from
+`artwork/box_art.png` is box art for your ROM collection. It's built from
 [jadelune's HQ recreation of the Blue box](https://www.deviantart.com/jadelune) with Snom's
 official artwork; `art/cover/boxedit/` has the scripts.
 

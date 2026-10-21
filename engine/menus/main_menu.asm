@@ -106,6 +106,7 @@ MainMenu:
 	jr .inputLoop
 .pressedA
 	farcall CopyTilesetHeader ; Snow Blue: the save's tileset pointers may predate this ROM
+	call ReloadMapHeaderPointers ; Pale Blue: so may its map pointers
 	call GBPalWhiteOutWithDelay3
 	call ClearScreen
 	ld a, PLAYER_DIR_DOWN
@@ -124,6 +125,63 @@ MainMenu:
 	set BIT_FLY_OR_DUNGEON_WARP, [hl]
 	call PrepareForSpecialWarp
 	jp SpecialEnterMap
+
+; Pale Blue: a save holds ROM pointers to its map's blocks, text, script and
+; connection strips; a rebuilt ROM can move those, so reread them from the map header
+ReloadMapHeaderPointers:
+	ld a, [wCurMap]
+	ld c, a
+	ld b, 0
+	ld hl, MapHeaderBanks
+	add hl, bc
+	ld de, wStringBuffer
+	ld bc, 1
+	ld a, BANK(MapHeaderBanks)
+	call FarCopyData ; wStringBuffer = the map's bank
+	ld a, [wCurMap]
+	ld l, a
+	ld h, 0
+	add hl, hl
+	ld de, MapHeaderPointers
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a ; hl = map header
+	push hl
+	ld de, wCurMapDataPtr - wCurMapHeader
+	add hl, de
+	ld de, wCurMapDataPtr
+	ld bc, wCurMapConnections - wCurMapDataPtr
+	ld a, [wStringBuffer]
+	call FarCopyData
+	pop hl
+	ld de, wCurMapHeaderEnd - wCurMapHeader
+	add hl, de ; connections follow the fixed header, in N, S, W, E order
+	ld de, wNorthConnectionHeader
+	ld a, [wCurMapConnections]
+	ld [wStringBuffer + 1], a
+	ld b, 1 << NORTH_F
+.connection
+	ld a, [wStringBuffer + 1]
+	and b
+	jr z, .next
+	push bc
+	ld bc, wSouthConnectionHeader - wNorthConnectionHeader
+	ld a, [wStringBuffer]
+	call FarCopyData ; advances hl and de past it
+	pop bc
+	jr .shift
+.next
+	push hl
+	ld hl, wSouthConnectionHeader - wNorthConnectionHeader
+	add hl, de
+	ld d, h
+	ld e, l
+	pop hl
+.shift
+	srl b
+	jr nz, .connection
+	ret
 
 InitOptions:
 	ld a, 1 << BIT_FAST_TEXT_DELAY
