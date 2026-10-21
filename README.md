@@ -27,8 +27,8 @@ Open it in any Game Boy emulator. It works on Game Boy and Super Game Boy.
 
 ## The agent
 
-The goal is an agent that runs on a home machine and beats the whole game on its own, one
-Snom and all. How it's built, and why, will go here as it takes shape.
+The goal is an agent that runs on a home machine and beats the whole game on its own.
+How it's built, and why, will go here as it takes shape.
 
 ## Credits
 
